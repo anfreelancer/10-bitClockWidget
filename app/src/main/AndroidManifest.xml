@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~     Copyright (C) 2017  Ashutosh Gangwar
+  ~
+  ~     This program is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     This program is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  package="com.luteapp.tenbitclockwidget">
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="com.android.vending.BILLING" />
+
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+  <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
+  <!-- To publish apk on Samsung Apps. -->
+  <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+
+  <application
+    android:name="com.luteapp.tenbitclockwidget.ClockWidgetApplication"
+    android:allowBackup="true"
+    android:icon="@drawable/app_icon"
+    android:label="@string/app_name"
+    tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
+    <receiver
+      android:name="com.luteapp.tenbitclockwidget.ClockWidgetProvider"
+      android:icon="@drawable/app_icon"
+      android:label="@string/app_name">
+
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+        <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
+        <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />
+        <action android:name="android.intent.action.TIME_SET" />
+      </intent-filter>
+
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/widget_info" />
+    </receiver>
+
+    <service android:name="com.luteapp.tenbitclockwidget.ClockWidgetUpdateService" />
+
+    <activity
+      android:name="com.luteapp.tenbitclockwidget.ClockWidgetPreferenceActivity"
+      android:theme="@style/PreferenceTheme">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+      </intent-filter>
+    </activity>
+
+    <activity
+      android:name="com.luteapp.tenbitclockwidget.SplashActivity"
+      android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+
+    <activity
+      android:name="com.luteapp.tenbitclockwidget.ShopActivity"
+      android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+    <activity
+      android:name="com.luteapp.tenbitclockwidget.NotPremiumActivity"
+      android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+    <activity
+      android:name="com.luteapp.tenbitclockwidget.WebViewExtrasActivity"
+      android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+
+  </application>
+
+</manifest>
